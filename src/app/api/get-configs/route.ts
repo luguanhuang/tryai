@@ -1,9 +1,9 @@
 import { respData, respErr } from "@/lib/resp";
-import { getConfigs } from "@/services/config";
+import { getAllConfigs } from "@/services/config";
 
 export async function POST() {
   try {
-    const configs = await getConfigs();
+    const configs = await getAllConfigs();
 
     return respData(configs);
   } catch (e) {

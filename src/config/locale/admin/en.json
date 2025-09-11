@@ -1,0 +1,50 @@
+{
+  "sidebar": {
+    "brand": {
+      "title": "ShipAny",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "ShipAny"
+      },
+      "url": "/admin"
+    },
+    "main_nav": {
+      "items": [
+        {
+          "title": "Dashboard",
+          "url": "/admin"
+        },
+        {
+          "title": "Users",
+          "url": "/admin/users"
+        }
+      ]
+    },
+    "bottom_nav": {
+      "items": [
+        {
+          "title": "Documents",
+          "url": "https://docs.shipany.ai",
+          "target": "_blank"
+        },
+        {
+          "title": "Settings",
+          "url": "/admin/settings"
+        }
+      ]
+    },
+    "user_nav": {
+      "items": [
+        {
+          "title": "Settings",
+          "url": "/admin/settings/ai"
+        },
+        {
+          "title": "Billing",
+          "url": "/admin/billing"
+        }
+      ]
+    },
+    "variant": "inset"
+  }
+}

@@ -1,9 +1,9 @@
 import { createAuthClient } from "better-auth/react";
-import { configs } from "@/config";
+import { envConfigs } from "@/config";
 
 export const authClient = createAuthClient({
-  baseURL: configs.betterAuthUrl,
-  secret: configs.betterAuthSecret,
+  baseURL: envConfigs.auth_url,
+  secret: envConfigs.auth_secret,
 });
 
 export const { signIn, signUp, signOut, useSession } = authClient;

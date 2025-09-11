@@ -1,21 +1,21 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { configs } from "@/config";
+import { envConfigs } from "@/config";
 import { db } from "@/core/db";
 import * as schema from "@/config/db/schema";
 import { getSocialProviders } from "./config";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db(), {
-    provider: getDatabaseProvider(),
+    provider: getDatabaseProvider(envConfigs.database_provider),
     schema: schema,
   }),
-  secret: configs.betterAuthSecret ?? "",
-  socialProviders: getSocialProviders(),
+  secret: envConfigs.auth_secret ?? "",
+  socialProviders: await getSocialProviders(),
 });
 
-function getDatabaseProvider(): "sqlite" | "pg" | "mysql" {
-  switch (configs.databaseDriver) {
+function getDatabaseProvider(provider: string): "sqlite" | "pg" | "mysql" {
+  switch (provider) {
     case "sqlite":
       return "sqlite";
     case "postgresql":
@@ -24,7 +24,7 @@ function getDatabaseProvider(): "sqlite" | "pg" | "mysql" {
       return "mysql";
     default:
       throw new Error(
-        `Unsupported database provider for auth: ${configs.databaseProvider}`
+        `Unsupported database provider for auth: ${envConfigs.database_provider}`
       );
   }
 }

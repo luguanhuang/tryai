@@ -9,6 +9,7 @@ import { LandingData } from "@/services/locale";
 import { SignButton } from "./sign-button";
 import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 import { LocaleSelector } from "./locale-selector";
+import { ThemeToggler } from "@/blocks/base/theme-toggler";
 
 export const Header = ({ data }: { data: LandingData["header"] }) => {
   const [menuState, setMenuState] = React.useState(false);
@@ -100,7 +101,7 @@ export const Header = ({ data }: { data: LandingData["header"] }) => {
               </div>
 
               {data.show_sign ? <SignButton isScrolled={isScrolled} /> : null}
-              {data.show_theme ? <AnimatedThemeToggler /> : null}
+              {data.show_theme ? <ThemeToggler /> : null}
               {data.show_locale ? <LocaleSelector /> : null}
             </div>
           </div>

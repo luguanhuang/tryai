@@ -1,9 +1,35 @@
 import { db } from "@/core/db";
 import { config } from "@/config/db/schema";
+import { eq } from "drizzle-orm";
+import { envConfigs } from "@/config";
 
 export type Config = typeof config.$inferSelect;
 export type NewConfig = typeof config.$inferInsert;
 export type UpdateConfig = Partial<Omit<NewConfig, "name">>;
+
+export async function saveConfigs(configs: Record<string, string>) {
+  const result = await db().transaction(async (tx) => {
+    const configEntries = Object.entries(configs);
+    const results = [];
+
+    for (const [name, configValue] of configEntries) {
+      const [upsertResult] = await tx
+        .insert(config)
+        .values({ name, value: configValue })
+        .onConflictDoUpdate({
+          target: config.name,
+          set: { value: configValue },
+        })
+        .returning();
+
+      results.push(upsertResult);
+    }
+
+    return results;
+  });
+
+  return result;
+}
 
 export async function addConfig(newConfig: NewConfig) {
   const [result] = await db().insert(config).values(newConfig).returning();
@@ -22,6 +48,17 @@ export async function getConfigs() {
   for (const config of result) {
     configs[config.name] = config.value ?? "";
   }
+
+  return configs;
+}
+
+export async function getAllConfigs(): Promise<Record<string, string>> {
+  const dbConfigs = await getConfigs();
+
+  const configs = {
+    ...envConfigs,
+    ...dbConfigs,
+  };
 
   return configs;
 }

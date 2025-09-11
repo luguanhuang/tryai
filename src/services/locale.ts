@@ -1,4 +1,5 @@
 export type LandingData = typeof import("@/config/locale/landing/en.json");
+export type AdminData = typeof import("@/config/locale/admin/en.json");
 
 export async function getLandingData(locale: string) {
   return await getLocaleData("landing", locale);
@@ -10,6 +11,10 @@ export async function getPricingData(locale: string) {
 
 export async function getShowcaseData(locale: string) {
   return await getLocaleData("showcase", locale);
+}
+
+export async function getAdminData(locale: string) {
+  return await getLocaleData("admin", locale);
 }
 
 export async function getLocaleData(name: string, locale: string = "en") {

@@ -2,7 +2,7 @@ import "@/config/style/global.css";
 
 import { getLocale, setRequestLocale } from "next-intl/server";
 import { locales } from "@/config/locale";
-import { getConfigs } from "@/config";
+import { envConfigs } from "@/config";
 
 export default async function RootLayout({
   children,
@@ -12,9 +12,9 @@ export default async function RootLayout({
   const locale = await getLocale();
   setRequestLocale(locale);
 
-  const configs = getConfigs();
-  const baseUrl = configs.webUrl || "";
-  const adsenseCode = configs.adsenseCode || "";
+  const configs = envConfigs;
+  const baseUrl = configs.app_url || "";
+  const adsenseCode = "";
 
   return (
     <html lang={locale} suppressHydrationWarning>

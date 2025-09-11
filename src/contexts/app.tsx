@@ -14,7 +14,7 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     console.log("app init");
-    setTheme("dark");
+    setTheme("light");
   }, []);
 
   return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;

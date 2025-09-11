@@ -1,12 +1,12 @@
+import { envConfigs } from "@/config";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { configs } from "@/config";
 
 // Database instance for Node.js environment
 let dbInstance: ReturnType<typeof drizzle> | null = null;
 
 export function db() {
-  let databaseUrl = configs.databaseUrl;
+  let databaseUrl = envConfigs.database_url;
 
   if (!databaseUrl) {
     throw new Error("DATABASE_URL is not set");

@@ -4,6 +4,7 @@ import { routing } from "@/core/i18n/config";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/core/theme/provider";
 import { AppContextProvider } from "@/contexts/app";
+import { Toaster } from "@/components/ui/sonner";
 
 export async function generateMetadata({
   params,
@@ -38,7 +39,10 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider>
       <ThemeProvider>
-        <AppContextProvider>{children}</AppContextProvider>
+        <AppContextProvider>
+          {children}
+          <Toaster position="top-center" richColors />
+        </AppContextProvider>
       </ThemeProvider>
     </NextIntlClientProvider>
   );

@@ -1,13 +1,36 @@
 @baseUrl = http://localhost:3000
 
-### Add config
-POST {{baseUrl}}/api/add-config
+### Get configs
+POST {{baseUrl}}/api/get-configs
+
+### send email
+POST {{baseUrl}}/api/demo/send-email
 Content-Type: application/json
 
 {
-  "name": "foo",
-  "value": "bar"
+  "emails": ["support@thinkany.ai"],
+  "subject": "Test Send Email",
+  "content": "This is a test email from ShipAny"
 }
 
-### Get configs
-POST {{baseUrl}}/api/get-configs
+### generate image
+POST {{baseUrl}}/api/demo/gen-image
+Content-Type: application/json
+
+{
+  "model": "google/nano-banana",
+  "prompt": "Make the sheets in the style of the logo. Make the scene natural.",
+  "num": 1,
+  "options": {
+    "image_input": ["https://replicate.delivery/pbxt/NbYIclp4A5HWLsJ8lF5KgiYSNaLBBT1jUcYcHYQmN1uy5OnN/tmpcqc07f_q.png","https://replicate.delivery/pbxt/NbYId45yH8s04sptdtPcGqFIhV7zS5GTcdS3TtNliyTAoYPO/Screenshot%202025-08-26%20at%205.30.12%E2%80%AFPM.png"]
+  }
+}
+
+### generate text
+POST {{baseUrl}}/api/demo/gen-text
+Content-Type: application/json
+
+{
+  "model": "openai/gpt-5",
+  "prompt": "What is the capital of France?"
+}

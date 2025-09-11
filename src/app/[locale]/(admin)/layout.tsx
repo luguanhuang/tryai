@@ -1,6 +1,13 @@
 import { ReactNode } from "react";
 import { DashboardLayout } from "@/blocks/dashboard/layout";
+import { getAdminData } from "@/services/locale";
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
-  return <DashboardLayout>{children}</DashboardLayout>;
+export default async function AdminLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const data = await getAdminData("admin");
+
+  return <DashboardLayout data={data}>{children}</DashboardLayout>;
 }
