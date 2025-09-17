@@ -1,11 +1,12 @@
+import { ReactNode } from "react";
 import { Configs } from "@/services/config";
 import {
   AnalyticsManager,
   GoogleAnalyticsProvider,
   OpenPanelAnalyticsProvider,
   PlausibleAnalyticsProvider,
+  VercelAnalyticsProvider,
 } from "@/extensions/analytics";
-import { ReactNode } from "react";
 
 export function getAnalyticsComponents(dbConfigs: Configs): {
   analyticsMetaTags: ReactNode;
@@ -32,12 +33,18 @@ export function getAnalyticsComponents(dbConfigs: Configs): {
   }
 
   // openpanel
-  if (dbConfigs.openpanel_client_id && dbConfigs.openpanel_src) {
+  if (dbConfigs.openpanel_client_id) {
     analytics.addProvider(
       new OpenPanelAnalyticsProvider({
         clientId: dbConfigs.openpanel_client_id,
       })
     );
+  }
+
+  // vercel analytics
+  // TODO: read config from db
+  if (true) {
+    analytics.addProvider(new VercelAnalyticsProvider({ mode: "auto" }));
   }
 
   return {

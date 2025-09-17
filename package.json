@@ -43,6 +43,7 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "@tabler/icons-react": "^3.34.1",
     "@tanstack/react-table": "^8.21.3",
+    "@vercel/analytics": "^1.5.0",
     "ai": "^5.0.39",
     "aws4fetch": "^1.0.20",
     "better-auth": "^1.3.7",

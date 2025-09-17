@@ -64,3 +64,4 @@ export class AnalyticsManager {
 export * from "./google-analytics";
 export * from "./plausible";
 export * from "./open-panel";
+export * from "./vercel-analytics";

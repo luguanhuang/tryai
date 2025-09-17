@@ -21,7 +21,7 @@ export default async function RootLayout({
   // app url
   const appUrl = envConfigs.app_url || "";
 
-  const isProduction = process.env.NODE_ENV === "production";
+  const isProduction = process.env.NODE_ENV === "production" || true;
 
   // get analytics components in production
   const { analyticsMetaTags, analyticsHeadScripts, analyticsBodyScripts } =
