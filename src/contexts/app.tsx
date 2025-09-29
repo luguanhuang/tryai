@@ -38,6 +38,29 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   // show sign modal
   const [isShowSignModal, setIsShowSignModal] = useState(false);
 
+  const fetchUserCredits = async () => {
+    try {
+      if (!user) {
+        return;
+      }
+
+      const resp = await fetch("/api/get-user-credits", {
+        method: "POST",
+      });
+      if (!resp.ok) {
+        throw new Error(`fetch failed with status: ${resp.status}`);
+      }
+      const { code, message, data } = await resp.json();
+      if (code !== 0) {
+        throw new Error(message);
+      }
+
+      setUser({ ...user, credits: data });
+    } catch (e) {
+      console.log("fetch user credits failed:", e);
+    }
+  };
+
   useEffect(() => {
     if (typeof window !== "undefined" && !theme) {
       setTheme(envConfigs.default_theme);
@@ -51,6 +74,12 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
       setUser(null);
     }
   }, [session]);
+
+  useEffect(() => {
+    if (user && !user.credits) {
+      fetchUserCredits();
+    }
+  }, [user]);
 
   useEffect(() => {
     setIsCheckSign(isPending);

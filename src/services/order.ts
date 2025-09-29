@@ -1,8 +1,8 @@
-import { order, subscription } from "@/config/db/schema";
+import { credit, order, subscription } from "@/config/db/schema";
 import { db } from "@/core/db";
 import { and, count, desc, eq } from "drizzle-orm";
 import { NewSubscription } from "./subscription";
-
+import { NewCredit } from "./credit";
 export type Order = typeof order.$inferSelect;
 export type NewOrder = typeof order.$inferInsert;
 export type UpdateOrder = Partial<
@@ -118,34 +118,79 @@ export async function updateOrderByOrderNo(
   return result;
 }
 
-/**
- * update order with subscription data
- */
-export async function updateOrderWithSubscription(
-  orderNo: string,
-  updateOrder: UpdateOrder,
-  newSubscription: NewSubscription
-) {
+export async function updateOrderInTransaction({
+  orderNo,
+  updateOrder,
+  newSubscription,
+  newCredit,
+}: {
+  orderNo: string;
+  updateOrder: UpdateOrder;
+  newSubscription?: NewSubscription;
+  newCredit?: NewCredit;
+}) {
+  if (!orderNo || !updateOrder) {
+    throw new Error("orderNo and updateOrder are required");
+  }
+
+  // only update order, no need transaction
+  if (!newSubscription && !newCredit) {
+    return updateOrderByOrderNo(orderNo, updateOrder);
+  }
+
+  // need transaction
   const result = await db().transaction(async (tx) => {
-    // query existing subscription
-    let [existingSubscription] = await tx
-      .select()
-      .from(subscription)
-      .where(
-        and(
-          eq(subscription.subscriptionId, newSubscription.subscriptionId),
-          eq(subscription.paymentProvider, newSubscription.paymentProvider)
-        )
-      );
+    let result: any = {
+      order: null,
+      subscription: null,
+      credit: null,
+    };
 
-    if (!existingSubscription) {
-      // create subscription
-      const [subscriptionResult] = await tx
-        .insert(subscription)
-        .values(newSubscription)
-        .returning();
+    // deal with subscription
+    if (newSubscription) {
+      // not create subscription with same subscription id and payment provider
+      let [existingSubscription] = await tx
+        .select()
+        .from(subscription)
+        .where(
+          and(
+            eq(subscription.subscriptionId, newSubscription.subscriptionId),
+            eq(subscription.paymentProvider, newSubscription.paymentProvider)
+          )
+        );
 
-      existingSubscription = subscriptionResult;
+      if (!existingSubscription) {
+        // create subscription
+        const [subscriptionResult] = await tx
+          .insert(subscription)
+          .values(newSubscription)
+          .returning();
+
+        existingSubscription = subscriptionResult;
+      }
+
+      result.subscription = existingSubscription;
+    }
+
+    // deal with credit
+    if (newCredit) {
+      // not create credit with same order no
+      let [existingCredit] = await tx
+        .select()
+        .from(credit)
+        .where(eq(credit.orderNo, orderNo));
+
+      if (!existingCredit) {
+        // create credit
+        const [creditResult] = await tx
+          .insert(credit)
+          .values(newCredit)
+          .returning();
+
+        existingCredit = creditResult;
+      }
+
+      result.credit = existingCredit;
     }
 
     // update order
@@ -155,10 +200,7 @@ export async function updateOrderWithSubscription(
       .where(eq(order.orderNo, orderNo))
       .returning();
 
-    return {
-      order: orderResult,
-      subscription: existingSubscription,
-    };
+    return result;
   });
 
   return result;

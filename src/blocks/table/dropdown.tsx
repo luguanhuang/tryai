@@ -15,10 +15,12 @@ import { NavItem } from "@/types/blocks/common";
 
 export function Dropdown({
   value,
+  placeholder,
   metadata,
   className,
 }: {
   value: NavItem[];
+  placeholder?: string;
   metadata: Record<string, any>;
   className?: string;
 }) {

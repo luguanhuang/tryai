@@ -1,17 +1,11 @@
-import { Header, Main, MainHeader } from "@/blocks/dashboard";
-import { TableCard } from "@/blocks/table";
 import { type Table } from "@/types/blocks/table";
+import { TableCard } from "@/blocks/table";
 import { getUserInfo } from "@/services/user";
-import { getPosts, getPostsCount, Post } from "@/services/post";
-import { PostType } from "@/services/post";
-import { Button } from "@/types/blocks/common";
-import { getTaxonomies, TaxonomyType } from "@/services/taxonomy";
 import { Empty } from "@/blocks/common";
-import { getOrders, getOrdersCount, OrderStatus } from "@/services/order";
 import {
   getSubscriptions,
   getSubscriptionsCount,
-  SubscriptionStatus,
+  Subscription,
 } from "@/services/subscription";
 import moment from "moment";
 
@@ -88,22 +82,8 @@ export default async function SubscriptionPage({
         name: "action",
         title: "",
         type: "dropdown",
-        callback: (item: Post) => {
-          return [
-            {
-              name: "edit",
-              title: "Edit",
-              icon: "RiEditLine",
-              url: `/admin/posts/${item.id}/edit`,
-            },
-            {
-              name: "view",
-              title: "View",
-              icon: "RiEyeLine",
-              url: `/blog/${item.slug}`,
-              target: "_blank",
-            },
-          ];
+        callback: (item: Subscription) => {
+          return [];
         },
       },
     ],

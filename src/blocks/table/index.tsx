@@ -63,6 +63,7 @@ export function Table({
                   if (column.type === "image") {
                     cellContent = (
                       <Image
+                        placeholder={column.placeholder}
                         value={value}
                         metadata={column.metadata}
                         className={column.className}
@@ -71,6 +72,7 @@ export function Table({
                   } else if (column.type === "time") {
                     cellContent = (
                       <Time
+                        placeholder={column.placeholder}
                         value={value}
                         metadata={column.metadata}
                         className={column.className}
@@ -79,6 +81,7 @@ export function Table({
                   } else if (column.type === "label") {
                     cellContent = (
                       <Label
+                        placeholder={column.placeholder}
                         value={value}
                         metadata={column.metadata}
                         className={column.className}
@@ -87,6 +90,7 @@ export function Table({
                   } else if (column.type === "copy" && value) {
                     cellContent = (
                       <Copy
+                        placeholder={column.placeholder}
                         value={value}
                         metadata={column.metadata}
                         className={column.className}
@@ -97,6 +101,7 @@ export function Table({
                   } else if (column.type === "dropdown") {
                     cellContent = (
                       <Dropdown
+                        placeholder={column.placeholder}
                         value={content}
                         metadata={column.metadata}
                         className={column.className}

@@ -1,13 +1,13 @@
-import { Header, Main, MainHeader } from "@/blocks/dashboard";
-import { TableCard } from "@/blocks/table";
 import { type Table } from "@/types/blocks/table";
+import { TableCard } from "@/blocks/table";
 import { getUserInfo } from "@/services/user";
-import { getPosts, getPostsCount, Post } from "@/services/post";
-import { PostType } from "@/services/post";
-import { Button } from "@/types/blocks/common";
-import { getTaxonomies, TaxonomyType } from "@/services/taxonomy";
 import { Empty } from "@/blocks/common";
-import { getOrders, getOrdersCount, OrderStatus } from "@/services/order";
+import {
+  getOrders,
+  getOrdersCount,
+  Order,
+  OrderStatus,
+} from "@/services/order";
 
 export default async function PaymentsPage({
   searchParams,
@@ -78,22 +78,8 @@ export default async function PaymentsPage({
         name: "action",
         title: "",
         type: "dropdown",
-        callback: (item: Post) => {
-          return [
-            {
-              name: "edit",
-              title: "Edit",
-              icon: "RiEditLine",
-              url: `/admin/posts/${item.id}/edit`,
-            },
-            {
-              name: "view",
-              title: "View",
-              icon: "RiEyeLine",
-              url: `/blog/${item.slug}`,
-              target: "_blank",
-            },
-          ];
+        callback: (item: Order) => {
+          return [];
         },
       },
     ],

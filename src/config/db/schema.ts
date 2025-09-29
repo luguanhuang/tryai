@@ -154,6 +154,8 @@ export const order = pgTable("order", {
   subscriptionResult: text("subscription_result"), // subscription result
   checkoutUrl: text("checkout_url"), // checkout url
   callbackUrl: text("callback_url"), // callback url, after handle callback
+  creditsAmount: integer("credits_amount"), // credits amount
+  creditsValidDays: integer("credits_valid_days"), // credits validity days
 });
 
 export const subscription = pgTable("subscription", {
@@ -181,4 +183,28 @@ export const subscription = pgTable("subscription", {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
   deletedAt: timestamp("deleted_at"),
+});
+
+export const credit = pgTable("credit", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }), // user id
+  userEmail: text("user_email"), // user email
+  orderNo: text("order_no"), // payment order no
+  subscriptionId: text("subscription_id"), // payment subscription id
+  transactionNo: text("transaction_no").unique().notNull(), // transaction no
+  transactionType: text("transaction_type").notNull(), // transaction type, grant / consume
+  transactionScene: text("transaction_scene"), // transaction scene, payment / subscription / gift / award
+  credits: integer("credits").notNull(), // credits amount, n or -n
+  remainingCredits: integer("remaining_credits").notNull().default(0), // remaining credits amount
+  description: text("description"), // transaction description
+  expiresAt: timestamp("expires_at"), // transaction expires at
+  status: text("status").notNull(), // transaction status
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  deletedAt: timestamp("deleted_at"),
+  consumedDetail: text("consumed_detail"), // consumed detail
 });

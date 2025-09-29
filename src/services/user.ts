@@ -3,8 +3,17 @@ import { db } from "@/core/db";
 import { desc } from "drizzle-orm";
 import { headers } from "next/headers";
 import { auth } from "@/core/auth";
+import { getRemainingCredits } from "./credit";
 
-export type User = typeof user.$inferSelect;
+export interface UserCredits {
+  remainingCredits: number;
+  expiresAt: Date | null;
+}
+
+export type User = typeof user.$inferSelect & {
+  credits?: UserCredits;
+};
+
 export type NewUser = typeof user.$inferInsert;
 
 export async function getUsers({
@@ -28,6 +37,12 @@ export async function getUserInfo() {
   const signUser = await getSignUser();
 
   return signUser;
+}
+
+export async function getUserCredits(userId: string) {
+  const remainingCredits = await getRemainingCredits(userId);
+
+  return { remainingCredits };
 }
 
 export async function getSignUser() {

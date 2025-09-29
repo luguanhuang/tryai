@@ -57,6 +57,13 @@
       "when": 1758984422854,
       "tag": "0007_low_tarot",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1759159329927,
+      "tag": "0008_dashing_lady_deathstrike",
+      "breakpoints": true
     }
   ]
 }

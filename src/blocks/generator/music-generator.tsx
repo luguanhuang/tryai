@@ -26,11 +26,13 @@ import {
   User,
   Download,
   CheckCircle,
+  CreditCard,
 } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { useSession } from "@/core/auth/client";
 import { useAppContext } from "@/contexts/app";
+import { Link } from "@/core/i18n/navigation";
 
 interface SunoSongData {
   id: string;
@@ -108,7 +110,7 @@ export function MusicGenerator({ className, srOnlyTitle }: SongGeneratorProps) {
         }
       }
 
-      const response = await fetch("/api/ai-song/query-task", {
+      const response = await fetch("/api/demo/ai-music/query-task", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -296,7 +298,7 @@ export function MusicGenerator({ className, srOnlyTitle }: SongGeneratorProps) {
     setGenerationStartTime(Date.now()); // Set generation start time
 
     try {
-      const response = await fetch("/api/ai-song/generate", {
+      const response = await fetch("/api/demo/ai-music/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -513,6 +515,26 @@ export function MusicGenerator({ className, srOnlyTitle }: SongGeneratorProps) {
                   >
                     <User className="w-4 h-4 mr-2" /> Sign In to Generate Music
                   </Button>
+                )}
+
+                {user && user.credits && user.credits.remainingCredits > 0 ? (
+                  <div className="flex items-center justify-between mb-6 text-sm">
+                    <span className="text-destructive">1 credits cost</span>
+                    <span className="font-medium text-foreground">
+                      {user.credits.remainingCredits} credits remaining
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between mb-6 text-sm">
+                    <span className="text-destructive">
+                      1 credits cost, {0} credits remaining
+                    </span>
+                    <Link href="/pricing">
+                      <Button className="w-full" size="lg" variant="outline">
+                        <CreditCard className="size-4" /> Buy Credits
+                      </Button>
+                    </Link>
+                  </div>
                 )}
 
                 {isGenerating && (

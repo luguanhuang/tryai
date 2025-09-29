@@ -137,6 +137,8 @@ export async function POST(req: Request) {
       productName: pricingItem.product_name,
       description: pricingItem.description,
       callbackUrl: callbackUrl,
+      creditsAmount: pricingItem.credits,
+      creditsValidDays: pricingItem.valid_days,
     };
 
     // create order

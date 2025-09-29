@@ -2,11 +2,18 @@ import { envConfigs } from "@/config";
 import { PaymentStatus, PaymentType } from "@/extensions/payment";
 import { getSnowId, getUuid } from "@/lib/hash";
 import {
+  CreditTransactionScene,
+  CreditTransactionType,
+  NewCredit,
+  CreditStatus,
+  calculateCreditExpirationTime,
+} from "@/services/credit";
+import {
   findOrderByOrderNo,
   OrderStatus,
   UpdateOrder,
   updateOrderByOrderNo,
-  updateOrderWithSubscription,
+  updateOrderInTransaction,
 } from "@/services/order";
 import { paymentService } from "@/services/payment";
 import { NewSubscription, SubscriptionStatus } from "@/services/subscription";
@@ -103,11 +110,38 @@ export async function GET(req: Request) {
           session.subscriptionResult
         );
 
-        await updateOrderWithSubscription(
+        const credits = order.creditsAmount || 0;
+        const expiresAt =
+          credits > 0
+            ? calculateCreditExpirationTime(order, subscriptionInfo)
+            : null;
+
+        // grant credit for order
+        const newCredit: NewCredit = {
+          id: getUuid(),
+          userId: order.userId,
+          userEmail: order.userEmail,
+          orderNo: order.orderNo,
+          subscriptionId: subscriptionInfo.subscriptionId,
+          transactionNo: getSnowId(),
+          transactionType: CreditTransactionType.GRANT,
+          transactionScene:
+            order.paymentType === PaymentType.SUBSCRIPTION
+              ? CreditTransactionScene.SUBSCRIPTION
+              : CreditTransactionScene.PAYMENT,
+          credits: credits,
+          remainingCredits: credits,
+          description: `Grant credit`,
+          expiresAt: expiresAt,
+          status: CreditStatus.ACTIVE,
+        };
+
+        await updateOrderInTransaction({
           orderNo,
           updateOrder,
-          newSubscription
-        );
+          newSubscription,
+          newCredit,
+        });
       } else {
         // not subscription
         await updateOrderByOrderNo(orderNo, updateOrder);

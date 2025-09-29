@@ -4,6 +4,7 @@ export interface TableColumn {
   name?: string;
   title?: string;
   type?: "copy" | "image" | "time" | "label" | "dropdown";
+  placeholder?: string;
   metadata?: any;
   className?: string;
   callback?: (item: any) => any;

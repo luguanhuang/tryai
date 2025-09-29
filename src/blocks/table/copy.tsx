@@ -7,11 +7,13 @@ import { CopyIcon } from "lucide-react";
 
 export function Copy({
   value,
+  placeholder,
   metadata,
   className,
   children,
 }: {
   value: string;
+  placeholder?: string;
   metadata?: Record<string, any>;
   className?: string;
   children: ReactNode;
