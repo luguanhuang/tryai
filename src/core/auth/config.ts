@@ -5,18 +5,13 @@ import { db } from "@/core/db";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import * as schema from "@/config/db/schema";
 
-// static auth options
+// Static auth options - NO database connection
+// This ensures zero database calls during build time
 export const authOptions = {
   appName: envConfigs.app_name,
   baseURL: envConfigs.auth_url,
   secret: envConfigs.auth_secret,
   trustedOrigins: envConfigs.app_url ? [envConfigs.app_url] : [],
-  database: envConfigs.database_url
-    ? drizzleAdapter(db(), {
-        provider: getDatabaseProvider(envConfigs.database_provider),
-        schema: schema,
-      })
-    : null,
   advanced: {
     database: {
       generateId: () => getUuid(),
@@ -27,15 +22,24 @@ export const authOptions = {
   },
   logger: {
     verboseLogging: false,
-    disabled: process.env.NODE_ENV === "production" || !!process.env.NEXT_PHASE,
+    // Disable all logs during build and production
+    disabled: true,
   },
 };
 
-// get dynamic auth options
+// Dynamic auth options - WITH database connection
+// Only used in API routes that actually need database access
 export async function getAuthOptions() {
   const configs = await getAllConfigs();
   return {
     ...authOptions,
+    // Add database connection only when actually needed (runtime)
+    database: envConfigs.database_url
+      ? drizzleAdapter(db(), {
+          provider: getDatabaseProvider(envConfigs.database_provider),
+          schema: schema,
+        })
+      : null,
     emailAndPassword: {
       enabled: configs.email_auth_enabled !== "false",
     },
