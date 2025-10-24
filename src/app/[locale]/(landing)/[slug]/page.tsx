@@ -8,8 +8,37 @@ import { getThemePage } from '@/core/theme';
 import { envConfigs } from '@/config';
 import { Post } from '@/shared/types/blocks/blog';
 
-// Static generation for MDX pages
-export const dynamicParams = false; // Only allow routes from generateStaticParams
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  const page = pagesSource.getPage([slug], locale);
+
+  if (!page) {
+    return {
+      title: slug,
+      description: 'Page',
+      alternates: {
+        canonical: `/${locale}/${slug}`,
+      },
+    };
+  }
+
+  let canonicalUrl = `${envConfigs.app_url}${page.url}`;
+  if (locale === envConfigs.locale) {
+    canonicalUrl = `${envConfigs.app_url}${page.url.replace(`/${locale}`, '')}`;
+  }
+
+  return {
+    title: page.data.title,
+    description: page.data.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
+}
 
 export default async function DynamicPage({
   params,
@@ -52,41 +81,4 @@ export default async function DynamicPage({
   const Page = await getThemePage('page-detail');
 
   return <Page locale={locale} post={post} />;
-}
-
-export async function generateStaticParams() {
-  // Generate static params for all pages
-  return pagesSource.generateParams();
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string; slug: string }>;
-}) {
-  const { locale, slug } = await params;
-  const page = pagesSource.getPage([slug], locale);
-
-  if (!page) {
-    return {
-      title: slug,
-      description: 'Page',
-      alternates: {
-        canonical: `/${locale}/${slug}`,
-      },
-    };
-  }
-
-  let canonicalUrl = `${envConfigs.app_url}${page.url}`;
-  if (locale === envConfigs.locale) {
-    canonicalUrl = `${envConfigs.app_url}${page.url.replace(`/${locale}`, '')}`;
-  }
-
-  return {
-    title: page.data.title,
-    description: page.data.description,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-  };
 }
