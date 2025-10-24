@@ -14,7 +14,7 @@ const withNextIntl = createNextIntlPlugin({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  output: process.env.VERCEL ? undefined : 'standalone',
   reactStrictMode: false,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
@@ -37,16 +37,10 @@ const nextConfig = {
   },
   experimental: {
     turbopackFileSystemCacheForDev: true,
+    // Disable mdxRs for Vercel deployment compatibility with fumadocs-mdx
+    ...(process.env.VERCEL ? {} : { mdxRs: true }),
   },
   reactCompiler: true,
 };
 
-// Make sure experimental mdx flag is enabled
-const configWithMDX = {
-  ...nextConfig,
-  experimental: {
-    mdxRs: true,
-  },
-};
-
-export default withBundleAnalyzer(withNextIntl(withMDX(configWithMDX)));
+export default withBundleAnalyzer(withNextIntl(withMDX(nextConfig)));
