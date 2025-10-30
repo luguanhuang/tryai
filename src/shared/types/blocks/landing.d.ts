@@ -61,6 +61,7 @@ export interface Hero extends Section {
   id?: string;
   announcement?: Button;
   show_avatars?: boolean;
+  avatars_tip?: string;
   show_award?: boolean;
   highlight_text?: string;
 }

@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "ShipAny",
+      "title": "ShipAny Two",
       "logo": {
         "src": "/logo.png",
-        "alt": "ShipAny"
+        "alt": "ShipAny Two"
       },
       "url": "/"
     },
@@ -99,14 +99,15 @@
         "variant": "outline"
       }
     ],
-    "show_avatars": false,
+    "show_avatars": true,
+    "avatars_tip": "999+ 用户在使用 ShipAny 上站",
     "show_award": false,
     "image": {
-      "src": "/imgs/features/music.png",
+      "src": "/imgs/features/admin.png",
       "alt": "hero"
     },
     "image_invert": {
-      "src": "/imgs/features/music-dark.png",
+      "src": "/imgs/features/admin-dark.png",
       "alt": "hero"
     }
   },
@@ -156,7 +157,7 @@
     "label": "产品简介",
     "description": "ShipAny 是专为 AI SaaS 创业项目打造的 NextJS 脚手架，包括丰富模板、组件及文档。",
     "image": {
-      "src": "/imgs/features/1.png",
+      "src": "/imgs/features/landing-page.png",
       "alt": "introduce"
     },
     "items": [
@@ -209,7 +210,7 @@
         "description": "基于 Next.js，集成认证、支付、AI，一站式开箱即用。",
         "icon": "RiNextjsFill",
         "image": {
-          "src": "/imgs/features/2.png",
+          "src": "/imgs/features/user-billing.png",
           "alt": "benefits"
         }
       },
@@ -218,7 +219,7 @@
         "description": "多样的 AI SaaS 模板，点击即用，涵盖聊天、图像生成等多场景。",
         "icon": "RiClapperboardAiLine",
         "image": {
-          "src": "/imgs/features/3.png",
+          "src": "/imgs/features/admin-settings.png",
           "alt": "benefits"
         }
       },
@@ -227,7 +228,7 @@
         "description": "享受专属技术支持与开发者社区，为你的成功保驾护航。",
         "icon": "RiCodeFill",
         "image": {
-          "src": "/imgs/features/4.png",
+          "src": "/imgs/features/landing-page.png",
           "alt": "benefits"
         }
       }
@@ -452,6 +453,9 @@
     "title": "订阅我们的邮件通知",
     "description": "获取 ShipAny 最新资讯与产品动态。",
     "submit": {
+      "input": {
+        "placeholder": "输入邮箱"
+      },
       "button": {
         "title": "订阅"
       },
@@ -461,11 +465,11 @@
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "ShipAny",
+      "title": "ShipAny Two",
       "description": "ShipAny 是专为 AI SaaS 创业项目打造的 NextJS 模板。丰富模板与组件，极速交付你的产品。",
-      "image": {
+      "logo": {
         "src": "/logo.png",
-        "alt": "ShipAny"
+        "alt": "ShipAny Two"
       },
       "url": "/"
     },

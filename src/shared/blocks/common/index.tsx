@@ -9,8 +9,6 @@ export * from './locale-selector';
 
 export * from './theme-toggler';
 
-export * from './social-avatars';
-
 export * from './copyright';
 export * from './built-with';
 

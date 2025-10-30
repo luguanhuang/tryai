@@ -40,6 +40,7 @@ export interface FormField {
 }
 
 export interface FormSubmit {
+  input?: FormField;
   button?: Button;
   action?: string;
   handler?: (

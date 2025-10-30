@@ -84,13 +84,22 @@ export async function getSettingGroups() {
     {
       name: 'plausible',
       title: t('groups.plausible'),
-      description: 'custom your plausible settings',
+      description:
+        'custom your <a href="https://plausible.io/" class="text-primary" target="_blank">Plausible</a> settings',
       tab: 'analytics',
     },
     {
       name: 'openpanel',
       title: t('groups.openpanel'),
-      description: 'custom your openpanel settings',
+      description:
+        'custom your <a href="https://openpanel.dev/" class="text-primary" target="_blank">OpenPanel</a> settings',
+      tab: 'analytics',
+    },
+    {
+      name: 'vercel_analytics',
+      title: t('groups.vercel_analytics'),
+      description:
+        'custom your <a href="https://vercel.com/docs/analytics/" class="text-primary" target="_blank">Vercel Analytics</a> settings',
       tab: 'analytics',
     },
     {
@@ -382,6 +391,14 @@ export async function getSettings() {
       type: 'text',
       placeholder: '',
       group: 'openpanel',
+      tab: 'analytics',
+    },
+    {
+      name: 'vercel_analytics_enabled',
+      title: 'Enabled',
+      type: 'switch',
+      value: 'false',
+      group: 'vercel_analytics',
       tab: 'analytics',
     },
     {

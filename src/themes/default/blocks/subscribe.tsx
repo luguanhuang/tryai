@@ -77,7 +77,9 @@ export function Subscribe({
                 <Mail className="text-caption pointer-events-none absolute inset-y-0 left-5 my-auto size-5" />
 
                 <input
-                  placeholder="Your mail address"
+                  placeholder={
+                    subscribe.submit?.input?.placeholder || 'Enter your email'
+                  }
                   className="h-14 w-full bg-transparent pl-12 focus:outline-none"
                   type="email"
                   required

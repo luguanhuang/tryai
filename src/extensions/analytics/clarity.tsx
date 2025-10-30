@@ -28,7 +28,7 @@ export class ClarityAnalyticsProvider implements AnalyticsProvider {
     return (
       <>
         <Script
-          id={this.name}
+          id={`${this.name}-script`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `

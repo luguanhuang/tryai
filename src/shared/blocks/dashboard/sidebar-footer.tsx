@@ -15,7 +15,7 @@ export function SidebarFooter({ footer }: { footer: SidebarFooterType }) {
   return (
     <>
       {open ? (
-        <div className="mx-auto flex w-full items-center justify-start gap-x-4 border-t border-gray-200 px-4 py-3">
+        <div className="mx-auto flex w-full items-center justify-start gap-x-4 border-t px-4 py-3">
           {footer.nav?.items?.map((item: NavItem, idx: number) => (
             <div className="hover:text-primary cursor-pointer" key={idx}>
               <Link href={item.url || ''} target={item.target || '_self'}>

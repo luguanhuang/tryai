@@ -48,8 +48,7 @@ export function getAnalyticsManagerWithConfigs(configs: Configs) {
   }
 
   // vercel analytics
-  // TODO: read config from db
-  if (true) {
+  if (configs.vercel_analytics_enabled === 'true') {
     analytics.addProvider(new VercelAnalyticsProvider({ mode: 'auto' }));
   }
 

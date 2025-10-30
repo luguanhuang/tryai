@@ -1,20 +1,18 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 import { Link } from '@/core/i18n/navigation';
-import { SocialAvatars } from '@/shared/blocks/common';
-import { SmartIcon } from '@/shared/blocks/common/smart-icon';
+import { LazyImage, SmartIcon } from '@/shared/blocks/common';
 import { AnimatedGridPattern } from '@/shared/components/ui/animated-grid-pattern';
 import { Button } from '@/shared/components/ui/button';
 import { Highlighter } from '@/shared/components/ui/highlighter';
 import { cn } from '@/shared/lib/utils';
 import { Hero as HeroType } from '@/shared/types/blocks/landing';
 
-// Create animation configuration function
+import { SocialAvatars } from './social-avatars';
+
 const createFadeInVariant = (delay: number) => ({
   initial: {
     opacity: 0,
@@ -52,7 +50,6 @@ export function Hero({
         id={hero.id}
         className={`pt-24 pb-8 md:pt-36 md:pb-8 ${hero.className} ${className}`}
       >
-        {/* 公告 - 第1个元素 */}
         {hero.announcement && (
           <motion.div {...createFadeInVariant(0)}>
             <Link
@@ -80,7 +77,6 @@ export function Hero({
         )}
 
         <div className="relative mx-auto max-w-5xl px-4 text-center">
-          {/* 标题 - 第2个元素 */}
           <motion.div {...createFadeInVariant(0.15)}>
             {texts && texts.length > 0 ? (
               <h1 className="text-foreground text-5xl font-semibold text-balance sm:mt-12 sm:text-7xl">
@@ -97,14 +93,12 @@ export function Hero({
             )}
           </motion.div>
 
-          {/* 描述 - 第3个元素 */}
           <motion.p
             {...createFadeInVariant(0.3)}
             className="text-muted-foreground mt-8 mb-8 text-lg text-balance"
             dangerouslySetInnerHTML={{ __html: hero.description ?? '' }}
           />
 
-          {/* 按钮组 - 第4个元素 */}
           {hero.buttons && (
             <motion.div
               {...createFadeInVariant(0.45)}
@@ -130,7 +124,6 @@ export function Hero({
             </motion.div>
           )}
 
-          {/* 提示文字 - 第5个元素 */}
           {hero.tip && (
             <motion.p
               {...createFadeInVariant(0.6)}
@@ -139,15 +132,13 @@ export function Hero({
             />
           )}
 
-          {/* 社交头像 - 第6个元素 */}
           {hero.show_avatars && (
             <motion.div {...createFadeInVariant(0.75)}>
-              <SocialAvatars num={999} />
+              <SocialAvatars tip={hero.avatars_tip || ''} />
             </motion.div>
           )}
         </div>
       </section>
-      {/* 图片 - 第7个元素 */}
       {hero.image && (
         <motion.section
           className="border-foreground/10 relative mt-8 border-y sm:mt-16"
@@ -165,19 +156,15 @@ export function Hero({
                 aria-hidden
                 className="h-3 w-full bg-[repeating-linear-gradient(-45deg,var(--color-foreground),var(--color-foreground)_1px,transparent_1px,transparent_4px)] opacity-5"
               />
-              <Image
+              <LazyImage
                 className="border-border/25 relative z-2 hidden border dark:block"
                 src={hero.image_invert?.src || hero.image?.src || ''}
-                alt="app screen"
-                width={2796}
-                height={2008}
+                alt={hero.image_invert?.alt || hero.image?.alt || ''}
               />
-              <Image
+              <LazyImage
                 className="border-border/25 relative z-2 border dark:hidden"
                 src={hero.image?.src || hero.image_invert?.src || ''}
-                alt="app screen"
-                width={2796}
-                height={2008}
+                alt={hero.image?.alt || hero.image_invert?.alt || ''}
               />
             </div>
           </div>

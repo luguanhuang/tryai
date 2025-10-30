@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "ShipAny",
+      "title": "ShipAny Two",
       "logo": {
         "src": "/logo.png",
-        "alt": "ShipAny"
+        "alt": "ShipAny Two"
       },
       "url": "/"
     },
@@ -82,7 +82,7 @@
       "title": "🎉 ShipAny Template Two",
       "url": "/pricing"
     },
-    "tip": "🎁 50% off before 2025",
+    "tip": "🎁 Special offer for the first 1000 users",
     "buttons": [
       {
         "title": "Get Started",
@@ -99,14 +99,15 @@
         "variant": "outline"
       }
     ],
-    "show_avatars": false,
+    "show_avatars": true,
+    "avatars_tip": "999+ users are using ShipAny",
     "show_award": false,
     "image": {
-      "src": "/imgs/features/music.png",
+      "src": "/imgs/features/admin.png",
       "alt": "hero"
     },
     "image_invert": {
-      "src": "/imgs/features/music-dark.png",
+      "src": "/imgs/features/admin-dark.png",
       "alt": "hero"
     }
   },
@@ -156,7 +157,7 @@
     "label": "Introduce",
     "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups, including templates, components, and documentation.",
     "image": {
-      "src": "/imgs/features/1.png",
+      "src": "/imgs/features/landing-page.png",
       "alt": "introduce"
     },
     "items": [
@@ -209,7 +210,7 @@
         "description": "Built on Next.js with authentication, payments, and AI integration - everything works out of the box.",
         "icon": "RiNextjsFill",
         "image": {
-          "src": "/imgs/features/2.png",
+          "src": "/imgs/features/user-billing.png",
           "alt": "benefits"
         }
       },
@@ -218,7 +219,7 @@
         "description": "Choose from various AI SaaS templates to kickstart your project - chatbots, image generation, and more.",
         "icon": "RiClapperboardAiLine",
         "image": {
-          "src": "/imgs/features/3.png",
+          "src": "/imgs/features/admin-settings.png",
           "alt": "benefits"
         }
       },
@@ -227,7 +228,7 @@
         "description": "Get dedicated support and join our developer community to ensure your successful launch.",
         "icon": "RiCodeFill",
         "image": {
-          "src": "/imgs/features/4.png",
+          "src": "/imgs/features/landing-page.png",
           "alt": "benefits"
         }
       }
@@ -452,6 +453,9 @@
     "title": "Subscribe to our newsletter",
     "description": "Get the latest news and updates from ShipAny.",
     "submit": {
+      "input": {
+        "placeholder": "Enter your email"
+      },
       "button": {
         "title": "Subscribe"
       },
@@ -461,11 +465,11 @@
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "ShipAny",
+      "title": "ShipAny Two",
       "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups. Ship Fast with a variety of templates and components.",
-      "image": {
+      "logo": {
         "src": "/logo.png",
-        "alt": "ShipAny"
+        "alt": "ShipAny Two"
       },
       "url": "/"
     },
