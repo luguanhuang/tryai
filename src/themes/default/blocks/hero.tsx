@@ -3,7 +3,6 @@ import { ArrowRight } from 'lucide-react';
 
 import { Link } from '@/core/i18n/navigation';
 import { SmartIcon } from '@/shared/blocks/common';
-import { AnimatedGridPattern } from '@/shared/components/ui/animated-grid-pattern';
 import { Button } from '@/shared/components/ui/button';
 import { Highlighter } from '@/shared/components/ui/highlighter';
 import { cn } from '@/shared/lib/utils';
@@ -129,6 +128,7 @@ export function Hero({
                   }
                   sizes="(max-width: 768px) 100vw, 1200px"
                   loading="lazy"
+                  fetchPriority="high"
                   quality={75}
                 />
               )}
@@ -144,27 +144,13 @@ export function Hero({
                     section.image?.height || section.image_invert?.height || 630
                   }
                   sizes="(max-width: 768px) 100vw, 1200px"
-                  priority
+                  loading="lazy"
+                  fetchPriority="high"
                   quality={75}
                 />
               )}
             </div>
           </div>
-        </div>
-      )}
-
-      {section.show_bg !== false && (
-        <div className={section.background_image ? 'md:hidden' : ''}>
-          <AnimatedGridPattern
-            numSquares={15}
-            maxOpacity={0.08}
-            duration={4}
-            repeatDelay={2}
-            className={cn(
-              '[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]',
-              'inset-x-0 inset-y-[-30%] h-[200%] skew-y-12'
-            )}
-          />
         </div>
       )}
 
