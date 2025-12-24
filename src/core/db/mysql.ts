@@ -1,22 +1,17 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
+import { drizzle } from 'drizzle-orm/mysql2';
+import mysql from 'mysql2';
 
 import { envConfigs } from '@/config';
 import { isCloudflareWorker } from '@/shared/lib/env';
 
 // Global database connection instance (singleton pattern)
 let dbInstance: ReturnType<typeof drizzle> | null = null;
-let client: ReturnType<typeof postgres> | null = null;
+let pool: ReturnType<typeof mysql.createPool> | null = null;
 
-export function getPostgresDb() {
+export function getMysqlDb() {
   let databaseUrl = envConfigs.database_url;
 
   let isHyperdrive = false;
-  const schemaName = (envConfigs.db_schema || 'public').trim();
-  const connectionSchemaOptions =
-    schemaName && schemaName !== 'public'
-      ? { connection: { options: `-c search_path=${schemaName}` } }
-      : {};
 
   if (isCloudflareWorker) {
     const { env }: { env: any } = { env: {} };
@@ -38,15 +33,14 @@ export function getPostgresDb() {
   if (isCloudflareWorker) {
     console.log('in Cloudflare Workers environment');
     // Workers environment uses minimal configuration
-    const client = postgres(databaseUrl, {
-      prepare: false,
-      max: 1, // Limit to 1 connection in Workers
-      idle_timeout: 10, // Shorter timeout for Workers
-      connect_timeout: 5,
-      ...connectionSchemaOptions,
+    const client = mysql.createConnection({
+      uri: databaseUrl,
+      connectionLimit: 1,
+      enableKeepAlive: true,
+      waitForConnections: true,
     });
 
-    return drizzle(client);
+    return drizzle({ client });
   }
 
   // Singleton mode: reuse existing connection (good for traditional servers and serverless warm starts)
@@ -57,37 +51,35 @@ export function getPostgresDb() {
     }
 
     // Create connection pool only once
-    client = postgres(databaseUrl, {
-      prepare: false,
-      max: Number(envConfigs.db_max_connections) || 1, // Maximum connections in pool (default 1)
-      idle_timeout: 30, // Idle connection timeout (seconds)
-      connect_timeout: 10, // Connection timeout (seconds)
-      ...connectionSchemaOptions,
+    pool = mysql.createPool({
+      uri: databaseUrl,
+      connectionLimit: Number(envConfigs.db_max_connections) || 1, // Maximum connections in pool (default 1)
+      enableKeepAlive: true,
+      waitForConnections: true,
     });
 
-    dbInstance = drizzle({ client });
+    dbInstance = drizzle({ client: pool });
     return dbInstance;
   }
 
   // Non-singleton mode: create new connection each time (good for serverless)
   // In serverless, the connection will be cleaned up when the function instance is destroyed
-  const serverlessClient = postgres(databaseUrl, {
-    prepare: false,
-    max: 1, // Use single connection in serverless
-    idle_timeout: 20,
-    connect_timeout: 10,
-    ...connectionSchemaOptions,
+  const serverlessClient = mysql.createConnection({
+    uri: databaseUrl,
+    connectionLimit: 1,
+    enableKeepAlive: true,
+    waitForConnections: true,
   });
 
-  return drizzle({ client: serverlessClient });
+  return drizzle(serverlessClient);
 }
 
 // Optional: Function to close database connection (useful for testing or graceful shutdown)
 // Note: Only works in singleton mode
-export async function closePostgresDb() {
-  if (envConfigs.db_singleton_enabled && client) {
-    await client.end();
-    client = null;
+export async function closeMysqlDb() {
+  if (envConfigs.db_singleton_enabled && pool) {
+    await pool.end();
+    pool = null;
     dbInstance = null;
   }
 }
