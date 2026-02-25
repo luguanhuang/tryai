@@ -15,15 +15,15 @@
     "sections": {
       "hero": {
         "id": "hero",
-        "title": "Ship AI Startups in hours, not days",
-        "highlight_text": "in hours",
-        "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups.<br/>Ship Fast with a variety of templates and components.",
+        "title": "Build AI websites and content in minutes",
+        "highlight_text": "in minutes",
+        "description": "Trys.AI is your all-in-one AI generation website.<br/>Create websites and explore image, video, music, and chat AI tools in one place.",
         "announcement": {
           "badge": "New",
-          "title": "🎉 ShipAny Template Two",
-          "url": "/pricing"
+          "title": "Trys.AI All-in-One AI Platform",
+          "url": "/"
         },
-        "tip": "🎁 Special offer for the first 1000 users",
+        "tip": "Try image, video, music, and chat AI in one place",
         "buttons": [
           {
             "title": "Get Started",
@@ -41,7 +41,7 @@
           }
         ],
         "show_avatars": true,
-        "avatars_tip": "999+ users are using ShipAny",
+        "avatars_tip": "Creators and teams are already using Trys.AI",
         "show_award": false,
         "image": {
           "src": "/imgs/features/admin.png",
@@ -62,7 +62,7 @@
       },
       "logos": {
         "id": "logos",
-        "title": "ShipAny is built on the shoulders of giants",
+        "title": "Trys.AI is powered by modern AI technologies",
         "items": [
           {
             "title": "Next.js",
@@ -104,17 +104,17 @@
       "introduce": {
         "block": "features-list",
         "id": "introduce",
-        "title": "What is ShipAny",
+        "title": "What is Trys.AI",
         "label": "Introduce",
-        "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups, including templates, components, and documentation.",
+        "description": "Trys.AI is an all-in-one AI platform for website generation and creative workflows, with multiple AI tools available in one unified experience.",
         "image": {
           "src": "/imgs/features/landing-page.png",
           "alt": "introduce"
         },
         "items": [
           {
-            "title": "Ready-to-use Templates",
-            "description": "Choose from dozens of production-ready AI SaaS templates to quickly start your project.",
+            "title": "Website Generation",
+            "description": "Generate landing pages and marketing websites with AI-assisted workflows in minutes.",
             "icon": "RiNextjsFill",
             "image": {
               "src": "/imgs/features/1.png",
@@ -122,8 +122,8 @@
             }
           },
           {
-            "title": "Infrastructure Setup",
-            "description": "Get instant access to scalable infrastructure with best practices built-in.",
+            "title": "Multi-Model AI Tools",
+            "description": "Access image, video, music, and chat generation capabilities from one dashboard.",
             "icon": "RiDatabase2Line",
             "image": {
               "src": "/imgs/features/2.png",
@@ -131,8 +131,8 @@
             }
           },
           {
-            "title": "Quick Deployment",
-            "description": "Deploy your AI SaaS application to production in hours, not days.",
+            "title": "Fast Publishing",
+            "description": "Move from idea to public page quickly with production-ready workflows.",
             "icon": "RiCloudyFill",
             "image": {
               "src": "/imgs/features/3.png",
@@ -140,8 +140,8 @@
             }
           },
           {
-            "title": "AI Integration",
-            "description": "Integrate AI into your project with ease using our built-in AI SDK.",
+            "title": "Unified Workspace",
+            "description": "Manage prompts, outputs, and projects in one place without jumping between tools.",
             "icon": "RiRobot2Line",
             "image": {
               "src": "/imgs/features/4.png",
@@ -154,13 +154,13 @@
       "benefits": {
         "block": "features-accordion",
         "id": "benefits",
-        "title": "Why Choose ShipAny",
+        "title": "Why Choose Trys.AI",
         "label": "Benefits",
-        "description": "Get everything you need to launch your AI startup - from ready-to-use templates to technical support.",
+        "description": "Everything you need for AI-powered creation in one platform, from website generation to media workflows.",
         "items": [
           {
-            "title": "Complete Framework",
-            "description": "Built on Next.js with authentication, payments, and AI integration - everything works out of the box.",
+            "title": "All-in-One Platform",
+            "description": "Use one product for web generation, AI chat, image creation, video production, and music generation.",
             "icon": "RiNextjsFill",
             "image": {
               "src": "/imgs/features/user-billing.png",
@@ -168,8 +168,8 @@
             }
           },
           {
-            "title": "Rich Templates Library",
-            "description": "Choose from various AI SaaS templates to kickstart your project - chatbots, image generation, and more.",
+            "title": "Simple Experience",
+            "description": "A clean and consistent workflow makes advanced AI tools easy to use for teams and solo creators.",
             "icon": "RiClapperboardAiLine",
             "image": {
               "src": "/imgs/features/admin-settings.png",
@@ -177,8 +177,8 @@
             }
           },
           {
-            "title": "Technical Guidance",
-            "description": "Get dedicated support and join our developer community to ensure your successful launch.",
+            "title": "Built for Real Use",
+            "description": "Designed for rapid testing, iteration, and publishing with practical features you can use every day.",
             "icon": "RiCodeFill",
             "image": {
               "src": "/imgs/features/landing-page.png",
@@ -190,8 +190,8 @@
       "usage": {
         "block": "features-step",
         "id": "usage",
-        "title": "How to Launch with ShipAny",
-        "description": "Get your AI SaaS startup running in three simple steps:",
+        "title": "How to Start with Trys.AI",
+        "description": "Get started in three simple steps:",
         "image": {
           "src": "/imgs/features/1.png",
           "alt": "usage"
@@ -200,32 +200,32 @@
         "text_align": "center",
         "items": [
           {
-            "title": "Get ShipAny",
-            "description": "Buy ShipAny with a one-time payment. Check your email for the code and documentation.",
+            "title": "Create Your Account",
+            "description": "Sign in to Trys.AI and choose the workflow you want to use first.",
             "image": {
               "src": "/imgs/features/5.png",
               "alt": "usage"
             }
           },
           {
-            "title": "Start Your Project",
-            "description": "Read the documentation and clone the code of ShipAny. Start building your AI SaaS startup.",
+            "title": "Choose an AI Tool",
+            "description": "Pick website generation, image, video, music, or chat based on your goal.",
             "image": {
               "src": "/imgs/features/6.png",
               "alt": "usage"
             }
           },
           {
-            "title": "Customize Your Project",
-            "description": "Modify the template with your data and contents. Specific AI functionality needs.",
+            "title": "Generate and Refine",
+            "description": "Create outputs quickly and refine them with prompts until they match your needs.",
             "image": {
               "src": "/imgs/features/7.png",
               "alt": "usage"
             }
           },
           {
-            "title": "Deploy to Production",
-            "description": "Deploy your project to production with a few steps and start serving customers immediately.",
+            "title": "Publish or Export",
+            "description": "Deploy generated website content or export your AI assets for immediate use.",
             "image": {
               "src": "/imgs/features/8.png",
               "alt": "usage"
@@ -236,45 +236,45 @@
       },
       "features": {
         "id": "features",
-        "title": "Key Features of ShipAny",
-        "description": "Everything you need to launch your AI SaaS startup quickly and efficiently.",
+        "title": "Key Features of Trys.AI",
+        "description": "A complete AI toolkit for website creation and multimodal content generation.",
         "items": [
           {
-            "title": "Next.js Boilerplate",
-            "description": "Production-ready Next.js templates with SEO-friendly structure and i18n support.",
+            "title": "AI Website Builder",
+            "description": "Generate complete website sections and pages with AI-powered suggestions.",
             "icon": "RiNextjsFill"
           },
           {
-            "title": "Authentication & Payments",
-            "description": "Integrated Google OAuth, one-tap login, and Stripe payment processing.",
+            "title": "AI Chat Assistant",
+            "description": "Use chat workflows for ideation, writing, and iterative content creation.",
             "icon": "RiKey2Fill"
           },
           {
-            "title": "Data Infrastructure",
-            "description": "Built-in Supabase integration for reliable and scalable data storage.",
+            "title": "Image Generation",
+            "description": "Create visual assets for websites, marketing, and product content.",
             "icon": "RiDatabase2Line"
           },
           {
-            "title": "One-Click Deployment",
-            "description": "Seamless deployment to Vercel or Cloudflare with automated setup.",
+            "title": "Video Generation",
+            "description": "Turn ideas into short videos for product demos and social distribution.",
             "icon": "RiCloudy2Fill"
           },
           {
-            "title": "Business Analytics",
-            "description": "Integrated Google Analytics and Search Console for tracking growth.",
+            "title": "Music Generation",
+            "description": "Produce background tracks and audio concepts directly from prompts.",
             "icon": "RiBarChart2Line"
           },
           {
-            "title": "AI-Ready Infrastructure",
-            "description": "Pre-configured AI integration with built-in credits system and API sales.",
+            "title": "Unified Project Workspace",
+            "description": "Manage different AI outputs in one place and keep your workflow organized.",
             "icon": "RiRobot2Line"
           }
         ]
       },
       "stats": {
         "id": "stats",
-        "title": "People Love ShipAny",
-        "description": "for it's easy to use and fast to ship.",
+        "title": "People Love Trys.AI",
+        "description": "for its speed, flexibility, and all-in-one experience.",
         "items": [
           {
             "title": "999+",
@@ -293,13 +293,13 @@
       },
       "testimonials": {
         "id": "testimonials",
-        "title": "What Users Say About ShipAny",
-        "description": "Hear from developers and founders who launched their AI startups with ShipAny.",
+        "title": "What Users Say About Trys.AI",
+        "description": "Feedback from creators and teams using Trys.AI to build faster with AI.",
         "items": [
           {
             "name": "David Chen",
             "role": "Founder of AIWallpaper.shop",
-            "quote": "ShipAny saved us months of development time. We launched our AI wallpaper business in just 2 days and got our first paying customer within a week!",
+            "quote": "Trys.AI saved us months of development time. We launched our AI wallpaper business in just 2 days and got our first paying customer within a week!",
             "image": {
               "src": "/imgs/avatars/1.png",
               "alt": "david"
@@ -317,7 +317,7 @@
           {
             "name": "Marcus Thompson",
             "role": "Solo Developer",
-            "quote": "As a solo developer, ShipAny gave me everything I needed - auth, payments, AI integration, and beautiful UI. Launched my SaaS in a weekend!",
+            "quote": "As a solo developer, Trys.AI gave me everything I needed - auth, payments, AI integration, and beautiful UI. Launched my SaaS in a weekend!",
             "image": {
               "src": "/imgs/avatars/3.png",
               "alt": "marcus"
@@ -335,7 +335,7 @@
           {
             "name": "James Wilson",
             "role": "Tech Lead at GPTs.works",
-            "quote": "ShipAny's infrastructure is rock-solid. We scaled from 0 to 10k users without touching the backend. Best investment for our AI startup.",
+            "quote": "Trys.AI's infrastructure is rock-solid. We scaled from 0 to 10k users without touching the backend. Best investment for our AI startup.",
             "image": {
               "src": "/imgs/avatars/5.png",
               "alt": "james"
@@ -344,7 +344,7 @@
           {
             "name": "Anna Zhang",
             "role": "Startup Founder",
-            "quote": "From idea to launch in 3 days! ShipAny's templates and deployment tools made it possible to test our AI business concept incredibly fast.",
+            "quote": "From idea to launch in 3 days! Trys.AI's templates and deployment tools made it possible to test our AI business concept incredibly fast.",
             "image": {
               "src": "/imgs/avatars/6.png",
               "alt": "anna"
@@ -354,60 +354,60 @@
       },
       "faq": {
         "id": "faq",
-        "title": "Frequently Asked Questions About ShipAny",
-        "description": "Have another question? Contact us on Discord or by email.",
+        "title": "Frequently Asked Questions About Trys.AI",
+        "description": "Have another question? Contact us at support@trys.ai.",
         "items": [
           {
-            "question": "What exactly is ShipAny and how does it work?",
-            "answer": "ShipAny is a comprehensive NextJS boilerplate designed specifically for building AI SaaS startups. It provides ready-to-use templates, infrastructure setup, and deployment tools that help you launch your AI business in hours instead of days."
+            "question": "What is Trys.AI?",
+            "answer": "Trys.AI is an all-in-one AI generation platform for website creation and multimodal content workflows, including chat, image, video, and music tools."
           },
           {
-            "question": "Do I need advanced technical skills to use ShipAny?",
-            "answer": "While basic programming knowledge is helpful, ShipAny is designed to be developer-friendly. Our templates and documentation make it easy to get started, even if you're not an expert in AI or cloud infrastructure."
+            "question": "Who is Trys.AI for?",
+            "answer": "Trys.AI is designed for founders, creators, marketers, and product teams who need to build and publish AI-generated content quickly."
           },
           {
-            "question": "What types of AI SaaS can I build with ShipAny?",
-            "answer": "ShipAny supports a wide range of AI applications, from content generation to data analysis tools. Our templates cover popular use cases like AI chatbots, content generators, image processing apps, and more."
+            "question": "Do I need advanced technical skills?",
+            "answer": "No. Trys.AI is designed to be easy to use while still supporting advanced workflows for power users."
           },
           {
-            "question": "How long does it typically take to launch with ShipAny?",
-            "answer": "With ShipAny, you can have a working prototype in hours and a production-ready application in hours. Our one-click deployment and pre-configured infrastructure significantly reduce the traditional months-long development cycle."
+            "question": "What can I generate on Trys.AI?",
+            "answer": "You can generate websites, images, videos, music, and text/chat outputs from a single platform."
           },
           {
-            "question": "What's included in the ShipAny infrastructure?",
-            "answer": "ShipAny provides a complete infrastructure stack including authentication, database setup, API integration, payment processing, and scalable cloud deployment. Everything is pre-configured following industry best practices."
+            "question": "How do I get support?",
+            "answer": "You can contact our support team by email at support@trys.ai."
           },
           {
-            "question": "Can I customize the templates to match my brand?",
-            "answer": "Absolutely! All ShipAny templates are fully customizable. You can modify the design, features, and functionality to match your brand identity and specific business requirements while maintaining the robust underlying infrastructure."
+            "question": "Can I use Trys.AI for commercial projects?",
+            "answer": "Yes. Trys.AI is built for real projects and production workflows."
           }
         ]
       },
       "cta": {
         "id": "cta",
-        "title": "Ship your first AI SaaS Startup",
-        "description": "Start from here, ship with ShipAny.",
+        "title": "Start building with Trys.AI",
+        "description": "Launch your next AI project at trys.ai.",
         "buttons": [
           {
-            "title": "Get ShipAny",
-            "url": "https://shipany.ai",
+            "title": "Visit Trys.AI",
+            "url": "https://trys.ai",
             "target": "_blank",
             "icon": "Zap"
           },
           {
-            "title": "Read Document",
-            "url": "/docs",
-            "target": "_blank",
+            "title": "Contact Support",
+            "url": "mailto:support@trys.ai",
+            "target": "_self",
             "variant": "outline",
-            "icon": "BookOpenText"
+            "icon": "Mail"
           }
         ],
         "className": "bg-muted"
       },
       "subscribe": {
         "id": "subscribe",
-        "title": "Subscribe to our newsletter",
-        "description": "Get the latest news and updates from ShipAny.",
+        "title": "Subscribe to Trys.AI updates",
+        "description": "Get the latest product news and AI workflow updates.",
         "submit": {
           "input": {
             "placeholder": "Enter your email"

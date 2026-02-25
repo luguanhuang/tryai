@@ -63,3 +63,21 @@ src/config/db/migrations*
 .source
 
 .chats
+
+# sensitive secrets / local dev vars
+.dev.vars
+*.vars
+
+# AI assistant config
+.claude
+.agent
+
+# Editor config (optional, remove if you want to share)
+.vscode/
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# local env overrides
+.env*.local

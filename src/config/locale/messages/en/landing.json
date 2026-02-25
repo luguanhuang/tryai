@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "ShipAny Two",
+      "title": "Trys.AI",
       "logo": {
         "src": "/logo.png",
-        "alt": "ShipAny Two",
+        "alt": "Trys.AI",
         "width": 100,
         "height": 100
       },
@@ -107,17 +107,17 @@
     "show_theme": true,
     "show_locale": true,
     "topbanner": {
-      "text": "This website is a demo site for the ShipAny template. To purchase the ShipAny template, please visit the <a href='https://shipany.ai/pricing' class='text-orange-300' target='_blank'>ShipAny website</a>"
+      "text": "Welcome to Trys.AI, the all-in-one AI website generation platform. Explore more at <a href='https://trys.ai' class='text-orange-300' target='_blank'>trys.ai</a>"
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "ShipAny Two",
-      "description": "ShipAny is a NextJS boilerplate for building AI SaaS startups. Ship Fast with a variety of templates and components.",
+      "title": "Trys.AI",
+      "description": "Trys.AI is an all-in-one AI generation platform where you can build websites and experience multiple AI tools in one place.",
       "logo": {
         "src": "/logo.png",
-        "alt": "ShipAny Two",
+        "alt": "Trys.AI",
         "width": 1024,
         "height": 1024
       },
@@ -166,22 +166,22 @@
           ]
         },
         {
-          "title": "Friends",
+          "title": "Links",
           "children": [
             {
-              "title": "ShipAny",
-              "url": "https://shipany.ai",
+              "title": "Trys.AI",
+              "url": "https://trys.ai",
               "target": "_blank"
             },
             {
-              "title": "ThinkAny",
-              "url": "https://thinkany.ai",
-              "target": "_blank"
+              "title": "Features",
+              "url": "/#features",
+              "target": "_self"
             },
             {
-              "title": "MCP.so",
-              "url": "https://mcp.so",
-              "target": "_blank"
+              "title": "Pricing",
+              "url": "/pricing",
+              "target": "_self"
             }
           ]
         }
@@ -192,25 +192,25 @@
         {
           "title": "X",
           "icon": "RiTwitterXFill",
-          "url": "https://x.com/your-app-name",
+          "url": "https://trys.ai",
           "target": "_blank"
         },
         {
           "title": "Github",
           "icon": "Github",
-          "url": "https://github.com/your-app-name",
+          "url": "https://trys.ai",
           "target": "_blank"
         },
         {
           "title": "Discord",
           "icon": "RiDiscordFill",
-          "url": "https://discord.gg/your-app-name",
+          "url": "https://trys.ai",
           "target": "_blank"
         },
         {
           "title": "Email",
           "icon": "Mail",
-          "url": "mailto:support@your-domain.com",
+          "url": "mailto:support@trys.ai",
           "target": "_self"
         }
       ]
