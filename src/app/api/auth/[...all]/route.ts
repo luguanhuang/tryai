@@ -11,10 +11,15 @@ function maybeRateLimitGetSession(request: Request): Response | null {
     return null;
   }
 
+  const parsedIntervalMs = Number(
+    process.env.AUTH_GET_SESSION_MIN_INTERVAL_MS
+  );
+  // Default disabled in production unless explicitly configured.
+  // This endpoint is latency-sensitive for login UI state.
   const intervalMs =
-    Number(process.env.AUTH_GET_SESSION_MIN_INTERVAL_MS) ||
-    // default: 800ms (enough to stop request storms but still responsive)
-    800;
+    Number.isFinite(parsedIntervalMs) && parsedIntervalMs >= 0
+      ? parsedIntervalMs
+      : 0;
 
   return enforceMinIntervalRateLimit(request, {
     intervalMs,

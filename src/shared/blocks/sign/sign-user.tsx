@@ -67,9 +67,13 @@ export function SignUser({
   const { data: session, isPending } = useSession();
   const sessionUser = extractSessionUser(session);
   const displayUser = (user as UserType | null) ?? sessionUser;
+  const hasSessionUser = Boolean(sessionUser?.id);
+  const hasContextUser = Boolean(user?.id);
 
-  // In dev (React StrictMode) effects can run twice; ensure we don't spam getSession().
-  const didFallbackSyncRef = useRef(false);
+  // In dev (React StrictMode) effects can run twice; guard fallback calls.
+  const fallbackAttemptsRef = useRef(0);
+  const fallbackInFlightRef = useRef(false);
+  const fallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // one tap initialized
   const oneTapInitialized = useRef(false);
@@ -112,29 +116,71 @@ export function SignUser({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionUser?.id, (sessionUser as any)?.email, user?.id]);
 
-  // Fallback: if the session cookie is present but useSession lags, do a single refresh.
+  // Fallback: if useSession lags behind cookie state, retry getSession a few times.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (didFallbackSyncRef.current) return;
-    // Only run when useSession is done but still no user.
     if (isPending) return;
-    if (sessionUser || user) return;
+    if (hasSessionUser || hasContextUser) {
+      fallbackAttemptsRef.current = 0;
+      fallbackInFlightRef.current = false;
+      if (fallbackTimerRef.current) {
+        clearTimeout(fallbackTimerRef.current);
+        fallbackTimerRef.current = null;
+      }
+      return;
+    }
+    if (fallbackInFlightRef.current) return;
+    if (fallbackAttemptsRef.current >= 4) return;
 
-    didFallbackSyncRef.current = true;
-    void (async () => {
+    let cancelled = false;
+
+    const runFallbackSync = async () => {
+      if (cancelled || fallbackInFlightRef.current) return;
+      if (fallbackAttemptsRef.current >= 4) return;
+
+      fallbackInFlightRef.current = true;
+      fallbackAttemptsRef.current += 1;
+
       try {
         const res: any = await authClient.getSession();
         const fresh = extractSessionUser(res?.data ?? res);
         if (fresh?.id) {
           setUser(fresh);
           fetchUserInfo();
+          return;
         }
       } catch {
         // ignore
+      } finally {
+        fallbackInFlightRef.current = false;
       }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPending, sessionUser, user?.id]);
+
+      if (cancelled) return;
+      if (fallbackAttemptsRef.current >= 4) return;
+
+      const retryDelays = [350, 900, 1800];
+      const delay = retryDelays[fallbackAttemptsRef.current - 1] ?? 2200;
+      fallbackTimerRef.current = setTimeout(() => {
+        fallbackTimerRef.current = null;
+        void runFallbackSync();
+      }, delay);
+    };
+
+    void runFallbackSync();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isPending, hasSessionUser, hasContextUser, setUser, fetchUserInfo]);
+
+  useEffect(() => {
+    return () => {
+      if (fallbackTimerRef.current) {
+        clearTimeout(fallbackTimerRef.current);
+        fallbackTimerRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <>

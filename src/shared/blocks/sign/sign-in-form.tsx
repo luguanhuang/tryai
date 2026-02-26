@@ -29,7 +29,7 @@ export function SignInForm({
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { configs } = useAppContext();
+  const { configs, setIsShowSignModal } = useAppContext();
 
   const isGoogleAuthEnabled = configs.google_auth_enabled === 'true';
   const isGithubAuthEnabled = configs.github_auth_enabled === 'true';
@@ -85,7 +85,8 @@ export function SignInForm({
             // Do NOT reset loading here; navigation may not have completed yet.
           },
           onSuccess: (ctx) => {
-            // Keep loading=true until navigation completes.
+            // Close modal immediately after successful sign-in.
+            setIsShowSignModal(false);
           },
           onError: (e: any) => {
             const status = e?.error?.status;
